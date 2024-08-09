@@ -13,17 +13,14 @@ let inputfield=document.querySelector('.inputfield');
 
 let btnall=document.querySelector('.all');
 let btncontainer=document.querySelector('.btncontainer');
-// let btnelectronics=document.querySelector('.electronics');
-// let btnsports=document.querySelector('.sports');
-// let btnhome=document.querySelector('.home');
-// let btnbooks=document.querySelector('.books');
+
 
 const cardcontainer=document.querySelector('.cardcontainer');
 
 function createCard(details){
     details.forEach(field=>{
         let card=document.createElement('div');
-        card.classList.add('relative', 'border-2', 'h-80', 'w-64', 'mb-3', 'rounded-md', 'p-4');
+        card.classList.add('relative', 'border-2', 'h-80', 'md:w-[28vw]', 'lg:w-[22vw]',  'mb-3', 'rounded-md', 'p-4');
         
         let imgtag=document.createElement('img');
         imgtag.src=field.image;
@@ -51,7 +48,7 @@ function createCard(details){
     })
 }
 
-function createBtn(){
+
     const set=new Set();
     const filterItem = details.filter(item => {
         set.add(item.category);
@@ -59,14 +56,19 @@ function createBtn(){
     set.forEach(value => {
         let newbtn=document.createElement('button');
         newbtn.innerText=value;
+        newbtn.id=value.toLowerCase();
         newbtn.classList.add('bg-green-800', 'text-white', 'p-2', 'rounded-md');
         btncontainer.appendChild(newbtn);
-      });
+       
+        
+    });
 
-    console.log(set);
-    
-}
-createBtn();
+let btnelectronics=document.getElementById('electronics');
+
+let btnsports=document.querySelector('#sports');
+let btnhome=document.querySelector('#home');
+let btnbooks=document.querySelector('#books');
+
 
 inputfield.addEventListener('input',()=>{
     cardcontainer.innerHTML = '';
@@ -91,32 +93,28 @@ btnall.addEventListener('click',(e)=>{
     createCard(details);
 
 })
-// btnelectronics.addEventListener('click', (e) => {
-//     cardcontainer.innerHTML = '';
-//     const filterItem = details.filter(item => item.category === 'Electronics');
-//     // console.log(filterItem);
-//     createCard(filterItem);
-// });
+btnelectronics?.addEventListener('click', (e) => {
+    cardcontainer.innerHTML = '';
+    const filterItem = details.filter(item => item.category === 'Electronics');
+    createCard(filterItem);
+});
 
-// btnsports.addEventListener('click', (e) => {
-//     cardcontainer.innerHTML = '';
-//     const filterItem = details.filter(item => item.category === 'Sports');
-//     // console.log(filterItem);
-//     createCard(filterItem);
-// });
+btnsports?.addEventListener('click', (e) => {
+    cardcontainer.innerHTML = '';
+    const filterItem = details.filter(item => item.category === 'Sports');
+    createCard(filterItem);
+});
 
-// btnhome.addEventListener('click', (e) => {
-//     cardcontainer.innerHTML = '';
-//     const filterItem = details.filter(item => item.category === 'Home');
-//     // console.log(filterItem);
-//     createCard(filterItem);
-// });
+btnhome?.addEventListener('click', (e) => {
+    cardcontainer.innerHTML = '';
+    const filterItem = details.filter(item => item.category === 'Home');
+    // console.log(filterItem);
+    createCard(filterItem);
+});
 
-// btnbooks.addEventListener('click', (e) => {
-//     cardcontainer.innerHTML = '';
-//     const filterItem = details.filter(item => item.category === 'Books');
-//     // console.log(filterItem);
-//     createCard(filterItem);
-// });
+btnbooks?.addEventListener('click', (e) => {
+    cardcontainer.innerHTML = '';
+    const filterItem = details.filter(item => item.category === 'Books');
+    createCard(filterItem);
+});
 
-// isko_e.target_see_karo_ek_bar
